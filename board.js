@@ -22,7 +22,7 @@
 	  if ($.inArray(coords, this.snake.segments) === -1) {
 		return coords;
 	  } else {
-	    return this.placeApple();
+		  return this.placeApple(); // this doesn't seem to be working
 	  }
   }
   
