@@ -7,23 +7,40 @@
     this.snake = snake;
     this.apple = apple || this.placeApple();
     this.grid = this.generateGrid();
-    this.render();
+	
 	if (this.appleIsConsumed()) {
 		this.apple = this.placeApple();
 		this.snake.grow = true;
-    };
+    }
+	
+  	if (this.snakeCollidesWithSelf() || this.snakeCollidesWithBorder()) {
+  		this.gameOver = true;
+  	} else {
+		this.render();
+	}
   };
   
   Board.prototype.placeApple = function () {
-	  var coords = [
-	  	Math.floor(Math.random() * 25), //random number 0-24
-   	    Math.floor(Math.random() * 25)
+	  var newAppleCoords = [
+	  	Math.floor(Math.random() * 25),
+	    Math.floor(Math.random() * 25)
 	  ];
-	  if ($.inArray(coords, this.snake.segments) === -1) {
-		return coords;
+	  if (this.coordsInSnake(newAppleCoords, 0)) {
+		return this.placeApple();
 	  } else {
-		  return this.placeApple(); // this doesn't seem to be working
+		return newAppleCoords;
 	  }
+  }
+  
+  Board.prototype.coordsInSnake = function (appleCoords, slicePoint) {
+	  var inSnake = false;
+	  this.snake.segments.slice(slicePoint).forEach( function (segment) {
+		  if (String(segment) === String(appleCoords)) {
+			  inSnake = true;
+			  return;
+		  }
+	  });
+	  return inSnake;
   }
   
   Board.prototype.generateGrid = function () {
@@ -40,8 +57,8 @@
         this.grid[i][j] = '';
       }
     }
-    var that = this
-    this.snake.segments.forEach(function(segment) {
+    var that = this;
+    this.snake.segments.forEach(function (segment) {
       that.grid[segment[0]][segment[1]] = "S";
     });
 	this.grid[this.apple[0]][this.apple[1]] = "A";
@@ -49,5 +66,16 @@
   
   Board.prototype.appleIsConsumed = function () {
 	return String(this.snake.segments[0]) === String(this.apple); // JS is weird
+  }
+  
+  Board.prototype.snakeCollidesWithSelf = function () {
+	  var snakeHead = this.snake.segments[0];
+	  return this.coordsInSnake(snakeHead, 3); // check if head collides with body
+  }
+  
+  Board.prototype.snakeCollidesWithBorder = function () {
+	  var snakeHead = this.snake.segments[0];
+  	  return (snakeHead[0] > 24 || snakeHead[0] < 0) || 
+	  		 (snakeHead[1] > 24 || snakeHead[1] < 0)
   }
 })();

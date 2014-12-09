@@ -19,14 +19,21 @@
     if (this.grow) {
 	  this.grow = false;
 	} else {	
-    this.segments.pop();
+      this.segments.pop();
 	}
 	
 	return this;
   }
 
   Snake.prototype.turn = function(direction) {
-    this.dir = DIR[direction];
+	if (!this.isOpposite(direction)) {
+      this.dir = DIR[direction];
+    } // otherwise the turn is not valid; do nothing
+  }
+  
+  Snake.prototype.isOpposite = function (newDir) {
+	  return (this.dir[0] === (DIR[newDir][0] * -1)) && 
+	  		 (this.dir[1] === (DIR[newDir][1] * -1))
   }
 })();
 

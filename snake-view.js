@@ -8,15 +8,16 @@
     this.board = new SnakeGame.Board(this.snake);
     this.$el = $el;
 
-    this.renderBoard();
     this.bindEvents();
-	setInterval(this.makeMove.bind(this), 100);
+    this.renderBoard();
+	setInterval(this.makeMove.bind(this), 200);
   }
   
   var KEYS = {37: 'left', 38: 'up', 39: 'right', 40: 'down'}
 	  
   View.prototype.bindEvents = function () {
     $(window).on('keydown', (function (event) {
+	  event.preventDefault();
 	  var dir = KEYS[event.keyCode];
 	  if (dir) {
 	    this.snake.turn(dir);
@@ -25,6 +26,10 @@
   }
 
   View.prototype.makeMove = function () {
+	  if (this.board.gameOver) {
+		this.renderGameOver();
+		return;
+	  }
 	  var apple = this.board.apple;
 	  this.board = new SnakeGame.Board(this.snake.move(), apple);
 	  this.renderBoard();
@@ -47,5 +52,9 @@
     }
 
     this.$el.html(megaString);
+  }
+  
+  View.prototype.renderGameOver = function () {
+	  this.$el.html("<div class='game-over'><h1>Game Over</h1><h3>Score: " +  + "</h3></div>");
   }
 })();
