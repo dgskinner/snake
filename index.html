@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <h1>Snake</h1>
+    <h2>Snake</h2>
     <div class="board"></div>
 
     <script src="./jquery-2.1.1.js"></script>
@@ -17,8 +17,9 @@
     <script src="board.js"></script>
 
     <script>
+	  var gameView = null;
       $(function () {
-        new SnakeGame.View($("div.board"));
+         gameView = new SnakeGame.View($("div.board"));
       });
     </script>
   </body>
