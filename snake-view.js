@@ -35,7 +35,8 @@
 	  }
 	  var apple = this.board.apple;
 	  var score = this.board.score;
-	  this.board = new SnakeGame.Board(this.snake.move(), apple, score);
+	  var turds = this.board.turds;
+	  this.board = new SnakeGame.Board(this.snake.move(), apple, turds, score);
 	  this.turnedThisInterval = false;
 	  this.renderBoard();
   }
@@ -50,6 +51,8 @@
           megaString += "<div data-pos=[" + pos + "] data-snake='true' class='square'></div>";
         } else if (that.board.grid[i][j] == "A") {
           megaString += "<div data-pos=[" + pos + "] data-snake='apple' class='square'></div>";	
+        } else if (that.board.grid[i][j] == "T") {
+          megaString += "<div data-pos=[" + pos + "] data-snake='turd' class='square'></div>";
 		} else {
           megaString += "<div data-pos=[" + pos + "] data-snake='false' class='square'></div>";
         }

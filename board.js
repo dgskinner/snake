@@ -3,16 +3,18 @@
     window.SnakeGame = {};
   }
 
-  var Board = SnakeGame.Board = function(snake, apple, score) {
+  var Board = SnakeGame.Board = function(snake, apple, turds, score) {
     this.snake = snake;
     this.apple = apple || this.placeApple();
-    this.grid = this.generateGrid();
+	this.turds = turds || [];
 	this.score = score || 0;
+    this.grid = this.generateGrid();
 	
 	if (this.appleIsConsumed()) {
 		this.apple = this.placeApple();
 		this.snake.grow = true;
 		this.score += 10;
+		this.turds.push(this.snake.segments[this.snake.segments.length - 1]);
     }
 	
   	if (this.snakeCollidesWithSelf() || this.snakeCollidesWithBorder()) {
@@ -63,6 +65,10 @@
     this.snake.segments.forEach(function (segment) {
       that.grid[segment[0]][segment[1]] = "S";
     });
+	this.turds.forEach(function (turd) {
+		debugger
+      that.grid[turd[0]][turd[1]] = "T";
+	});
 	this.grid[this.apple[0]][this.apple[1]] = "A";
   }
   

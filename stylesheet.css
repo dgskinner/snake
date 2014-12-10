@@ -22,12 +22,15 @@ body {
 }
 
 [data-snake="true"] {
-/*	background: randomColor2;*/
 	background: green;
 }
 
 [data-snake="apple"] {
 	background: red;
+}
+
+[data-snake="turd"] {
+	background: gray;
 }
 
 .game-over {
