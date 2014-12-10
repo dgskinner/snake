@@ -1,10 +1,16 @@
+body {
+	position: relative;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
 .board {
   display: block;
   border: solid black 2px;
   height: 675px;
   width: 675px;
-  hh1 {
-}
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
 }
 
 .square {
@@ -16,6 +22,7 @@
 }
 
 [data-snake="true"] {
+/*	background: randomColor2;*/
 	background: green;
 }
 
@@ -28,8 +35,8 @@
 	height: 100%;
 	color: black;
 	text-align: center;
-	h1 {
-		padding-top: 220px;
-		background: yellow;
-	}
+}
+
+.game-over h1 {
+	padding-top: 250px;
 }

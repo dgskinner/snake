@@ -3,14 +3,16 @@
     window.SnakeGame = {};
   }
 
-  var Board = SnakeGame.Board = function(snake, apple) {
+  var Board = SnakeGame.Board = function(snake, apple, score) {
     this.snake = snake;
     this.apple = apple || this.placeApple();
     this.grid = this.generateGrid();
+	this.score = score || 0;
 	
 	if (this.appleIsConsumed()) {
 		this.apple = this.placeApple();
 		this.snake.grow = true;
+		this.score += 10;
     }
 	
   	if (this.snakeCollidesWithSelf() || this.snakeCollidesWithBorder()) {
