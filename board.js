@@ -5,6 +5,7 @@
 
   var Board = SnakeGame.Board = function(snake, apple, turds, score) {
     this.snake = snake;
+	this.snakeHead = snake.segments[0];
     this.apple = apple || this.placeApple();
 	this.turds = turds || [];
 	this.score = score || 0;
@@ -17,7 +18,9 @@
 		this.turds.push(this.snake.segments[this.snake.segments.length - 1]);
     }
 	
-  	if (this.snakeCollidesWithSelf() || this.snakeCollidesWithBorder()) {
+  	if (this.snakeCollidesWithSelf()   ||  
+	    this.snakeCollidesWithBorder() ||
+		this.snakeCollidesWithTurd()     ) {
   		this.gameOver = true;
   	} else {
 		this.render();
@@ -29,22 +32,22 @@
 	  	Math.floor(Math.random() * 25),
 	    Math.floor(Math.random() * 25)
 	  ];
-	  if (this.coordsInSnake(newAppleCoords, 0)) {
+	  if (this.coordsInArray(newAppleCoords, this.snake.segments)) {
 		return this.placeApple();
 	  } else {
 		return newAppleCoords;
 	  }
   }
   
-  Board.prototype.coordsInSnake = function (appleCoords, slicePoint) {
-	  var inSnake = false;
-	  this.snake.segments.slice(slicePoint).forEach( function (segment) {
-		  if (String(segment) === String(appleCoords)) {
-			  inSnake = true;
+  Board.prototype.coordsInArray = function (coords, array) {
+	  var inArray = false;
+	  array.forEach(function (item) {
+		  if (String(item) === String(coords)) {
+			  inArray = true;
 			  return;
 		  }
 	  });
-	  return inSnake;
+	  return inArray;
   }
   
   Board.prototype.generateGrid = function () {
@@ -77,13 +80,17 @@
   }
   
   Board.prototype.snakeCollidesWithSelf = function () {
-	  var snakeHead = this.snake.segments[0];
-	  return this.coordsInSnake(snakeHead, 3); // check if head collides with body
+	  return this.coordsInArray(this.snakeHead, this.snake.segments.slice(3)); 
+	  // check if head collides with body
   }
   
   Board.prototype.snakeCollidesWithBorder = function () {
 	  var snakeHead = this.snake.segments[0];
-  	  return (snakeHead[0] > 24 || snakeHead[0] < 0) || 
-	  		 (snakeHead[1] > 24 || snakeHead[1] < 0)
+  	  return (this.snakeHead[0] > 24 || this.snakeHead[0] < 0) || 
+	  		 (this.snakeHead[1] > 24 || this.snakeHead[1] < 0)
+  }
+  
+  Board.prototype.snakeCollidesWithTurd = function () {
+	  return this.coordsInArray(this.snakeHead, this.turds);
   }
 })();

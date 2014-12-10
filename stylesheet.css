@@ -30,7 +30,7 @@ body {
 }
 
 [data-snake="turd"] {
-	background: gray;
+	background: black;
 }
 
 .game-over {
