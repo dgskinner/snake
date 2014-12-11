@@ -7,7 +7,7 @@
 
   var StartView = SnakeGame.StartView = function ($el, score) {
     this.$el = $el;
-	if (score) {
+	if (score >= 0) {
 		this.$el.html("<div class='game-over'><h1>Game Over</h1><h2>Score: " + score + 
 		"</h2><h3>Press any arrow key to play again</h3></div>");
 	} else {
