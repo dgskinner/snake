@@ -6,8 +6,8 @@
   var Board = SnakeGame.Board = function(snake, apple, turds, score) {
     this.snake = snake;
 	this.snakeHead = snake.segments[0];
-    this.apple = apple || this.placeApple();
 	this.turds = turds || [];
+    this.apple = apple || this.placeApple();
 	this.score = score || 0;
     this.grid = this.generateGrid();
 	
@@ -32,7 +32,8 @@
 	  	Math.floor(Math.random() * 25),
 	    Math.floor(Math.random() * 25)
 	  ];
-	  if (this.coordsInArray(newAppleCoords, this.snake.segments)) {
+	  if (this.coordsInArray(newAppleCoords, this.snake.segments) ||
+          this.coordsInArray(newAppleCoords, this.turds)) {
 		return this.placeApple();
 	  } else {
 		return newAppleCoords;
@@ -69,7 +70,6 @@
       that.grid[segment[0]][segment[1]] = "S";
     });
 	this.turds.forEach(function (turd) {
-		debugger
       that.grid[turd[0]][turd[1]] = "T";
 	});
 	this.grid[this.apple[0]][this.apple[1]] = "A";
