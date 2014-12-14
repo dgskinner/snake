@@ -21,7 +21,7 @@ body {
 
 .square {
 	display: inline-block;
-	border: solid white 1px;
+	border: solid lightgreen 1px;
 	float: left;
 	height: 24px;
 	width: 24px;
