@@ -13,7 +13,6 @@
 	} else {
 		this.$el.html("<div class='start'><h2>Press any arrow key to play</h2></div>");
 	}
-	// this.renderStartView();
 	
 	$(window).on('keydown', (function (event) {
 	var dir = KEYS[event.keyCode];
@@ -24,14 +23,7 @@
   	    new SnakeGame.PlayView($el);
 	  }
 	}).bind(this));
-  }
-  
-	//   StartView.prototype.renderStartView = function () {
-	// this.$el.append("<div class='start'><h2>Press any arrow key to play</h2></div>");
-	//   }
-  
-  
-  
+  } 
   
   var PlayView = SnakeGame.PlayView = function ($el) {
 	this.$el = $el;
@@ -93,9 +85,6 @@
   PlayView.prototype.renderGameOver = function () {
 	  clearInterval(this.intervalId);
       this.$el.empty();
-	  //       this.$el.html("<div class='game-over'><h1>Game Over</h1><h3>Score: " +
-	  // 				     this.board.score + "</h3></div>");
-	  // new SnakeGame.StartView($("div.board"));
 	  new SnakeGame.StartView(this.$el, this.board.score);
   }
 })();

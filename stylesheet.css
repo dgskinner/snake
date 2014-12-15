@@ -33,12 +33,10 @@ body {
 }
 
 [data-snake="apple"] {
-/*	background: #FF3333;*/
 	background: white;
 }
 
 [data-snake="turd"] {
-/*	background: #606060;*/
 	background: black;
 }
 
@@ -50,6 +48,7 @@ body {
 	position: absolute;
 	top: -12px;
 }
+
 .diamond:after {
 	content: '';
 	position: absolute;
