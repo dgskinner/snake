@@ -32,7 +32,7 @@
 	this.turnedThisInterval = false;
     this.bindEvents();
     this.renderBoard();
-	this.intervalId = setInterval(this.makeMove.bind(this), 700);
+	this.intervalId = setInterval(this.makeMove.bind(this), 100);
   }
   	  
   PlayView.prototype.bindEvents = function () {
