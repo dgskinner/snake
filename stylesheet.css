@@ -21,7 +21,7 @@ body {
 
 .square {
 	display: inline-block;
-	border: solid white 1px;
+	border: solid black 1px;
 	float: left;
 	height: 24px;
 	width: 24px;
@@ -34,7 +34,7 @@ body {
 
 [data-snake="apple"] {
 /*	background: #FF3333;*/
-	background: white;
+	background: red;
 }
 
 [data-snake="turd"] {
