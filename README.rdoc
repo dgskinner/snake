@@ -1,6 +1,6 @@
-# Rattlesnake
+== Rattlesnake
 
-Rattlesnake is a game based on the classic arcade game Snake. The goal is to direct the snake toward the white squares (eggs). Ten points are awarded for each egg eaten. (live: http://dgskinner.github.io)
+Rattlesnake is a game built with JavaScript/jQuery based on the classic arcade game Snake. The goal is to direct the snake toward the white squares (eggs). Ten points are awarded for each egg eaten. (live: http://dgskinner.github.io)
 * The rattesnake grows with each egg eaten, making the game harder as it progresses.
 * The snake also drops a mine each time it eats an egg.
 * Game ends once the snake collides with a mine, itself, or the border of the grid
