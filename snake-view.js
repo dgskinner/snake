@@ -11,7 +11,7 @@
 		this.$el.html("<div class='game-over'><h1>Game Over</h1><h2>Score: " + score + 
 		"</h2><h3>Press any arrow key to play again</h3></div>");
 	} else {
-		this.$el.html("<div class='start'><h2>Press any arrow key to play</h2></div>");
+		this.$el.html("<div class='start'><h2>Press any arrow key to play Rattlesnake</h2></div>");
 	}
 	
 	$(window).on('keydown', (function (event) {
