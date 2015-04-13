@@ -3,7 +3,7 @@ body {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-.board {
+#board {
 	display: block;
 	border: solid black 2px;
 	background: lightgreen;
