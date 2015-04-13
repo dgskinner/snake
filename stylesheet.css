@@ -14,6 +14,13 @@ body {
 	margin-top: 40px;
 }
 
+#score {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
 .start {
 	text-align: center;
 	padding-top: 260px;
