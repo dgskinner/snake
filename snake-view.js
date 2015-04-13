@@ -78,7 +78,7 @@
         }
       }
     }
-
+	$("#score").html("Score: " + this.board.score);
     this.$el.html(megaString);
   }
   
